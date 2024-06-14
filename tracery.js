@@ -294,96 +294,137 @@ var tracery = function() {
         this.raw = raw;
         this.grammar = grammar;
         this.falloff = 1;
-
+    
         if (Array.isArray(raw)) {
             this.defaultRules = raw;
-        } else if ( typeof raw === 'string' || raw instanceof String) {
+        } else if (typeof raw === 'string' || raw instanceof String) {
             this.defaultRules = [raw];
         } else if (raw === 'object') {
             // TODO: support for conditional and hierarchical rule sets
         }
+    
+        // Initialize used rules
+        this.usedRules = [];
+    }
 
-    };
+
+
+    
+function RuleSet(grammar, raw) {
+    this.raw = raw;
+    this.grammar = grammar;
+    this.falloff = 1;
+
+    if (Array.isArray(raw)) {
+        this.defaultRules = raw;
+    } else if (typeof raw === 'string' || raw instanceof String) {
+        this.defaultRules = [raw];
+    } else if (raw === 'object') {
+        // TODO: support for conditional and hierarchical rule sets
+    }
+
+    // Initialize used rules
+    this.usedRules = [];
+}
+
+function RuleSet(grammar, raw) {
+    this.raw = raw;
+    this.grammar = grammar;
+    this.falloff = 1;
+
+    if (Array.isArray(raw)) {
+        this.defaultRules = raw;
+    } else if (typeof raw === 'string' || raw instanceof String) {
+        this.defaultRules = [raw];
+    } else if (raw === 'object') {
+        // TODO: support for conditional and hierarchical rule sets
+    }
+
+    // Initialize used rules
+    this.usedRules = new Set();
+}
 
     RuleSet.prototype.selectRule = function(errors) {
-        // console.log("Get rule", this.raw);
-        // Is there a conditional?
+        // Handle conditional rules
         if (this.conditionalRule) {
             var value = this.grammar.expand(this.conditionalRule, true);
-            // does this value match any of the conditionals?
             if (this.conditionalValues[value]) {
                 var v = this.conditionalValues[value].selectRule(errors);
                 if (v !== null && v !== undefined)
                     return v;
             }
-            // No returned value?
         }
 
-        // Is there a ranked order?
+        // Handle ranked rules
         if (this.ranking) {
             for (var i = 0; i < this.ranking.length; i++) {
                 var v = this.ranking.selectRule();
                 if (v !== null && v !== undefined)
                     return v;
             }
-
-            // Still no returned value?
         }
 
+        // Handle default rules
         if (this.defaultRules !== undefined) {
+            // If all rules have been used, reset the usedRules array
+            if (this.usedRules.length >= this.defaultRules.length) {
+                this.usedRules = [];
+            }
+
+            // Select a rule that hasn't been used yet
+            var availableRules = this.defaultRules.filter(rule => !this.usedRules.includes(rule));
             var index = 0;
-            // Select from this basic array of rules
 
             // Get the distribution from the grammar if there is no other
             var distribution = this.distribution;
-            if (!distribution)
-                distribution = this.grammar.distribution;
+            if (!distribution) distribution = this.grammar.distribution;
 
-            switch(distribution) {
-            case "shuffle":
-
-                // create a shuffle desk
-                if (!this.shuffledDeck || this.shuffledDeck.length === 0) {
-                    // make an array
-                    this.shuffledDeck = fyshuffle(Array.apply(null, {
-                        length : this.defaultRules.length
-                    }).map(Number.call, Number), this.falloff);
-
-                }
-
-                index = this.shuffledDeck.pop();
-
-                break;
-            case "weighted":
-                errors.push("Weighted distribution not yet implemented");
-                break;
-            case "falloff":
-                errors.push("Falloff distribution not yet implemented");
-                break;
-            default:
-
-                index = Math.floor(Math.pow(Math.random(), this.falloff) * this.defaultRules.length);
-                break;
+            switch (distribution) {
+                case "shuffle":
+                    if (!this.shuffledDeck || this.shuffledDeck.length === 0) {
+                        this.shuffledDeck = fyshuffle(
+                            Array.apply(null, { length: availableRules.length }).map(Number.call, Number),
+                            this.falloff
+                        );
+                    }
+                    index = this.shuffledDeck.pop();
+                    break;
+                case "weighted":
+                    errors.push("Weighted distribution not yet implemented");
+                    break;
+                case "falloff":
+                    errors.push("Falloff distribution not yet implemented");
+                    break;
+                default:
+                    index = Math.floor(Math.pow(Math.random(), this.falloff) * availableRules.length);
+                    break;
             }
 
-            if (!this.defaultUses)
-                this.defaultUses = [];
-            this.defaultUses[index] = ++this.defaultUses[index] || 1;
-            return this.defaultRules[index];
+            var selectedRule = availableRules[index];
+            this.usedRules.push(selectedRule);
+
+            return selectedRule;
         }
 
         errors.push("No default rules defined for " + this);
         return null;
-
     };
 
     RuleSet.prototype.clearState = function() {
-
+        this.usedRules = [];
         if (this.defaultUses) {
             this.defaultUses = [];
         }
     };
 
+
+    
+    
+
+
+
+
+  
     function fyshuffle(array, falloff) {
         var currentIndex = array.length,
             temporaryValue,
@@ -413,14 +454,11 @@ var tracery = function() {
 
         this.baseRules = new RuleSet(this.grammar, rawRules);
         this.clearState();
-
     };
 
     Symbol.prototype.clearState = function() {
-
         // Clear the stack and clear all ruleset usages
         this.stack = [this.baseRules];
-
         this.uses = [];
         this.baseRules.clearState();
     };
@@ -482,7 +520,6 @@ var tracery = function() {
     };
 
     Grammar.prototype.loadFromRawObj = function(raw) {
-
         this.raw = raw;
         this.symbols = {};
         this.subgrammars = [];
