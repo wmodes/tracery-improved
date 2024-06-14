@@ -5,7 +5,7 @@ This is an improved version of [v buckenham's](https://github.com/v21/tracery) a
 
 ## Improvement
 
-In this version of Tracery, we have enhanced the rule selection mechanism to ensure that rules are not reused until all options have been exhausted. This improvement addresses the issue of rapidly exhausting top-level rules, thereby enabling more diverse and dynamic text generation. By implementing a cycling strategy for rule selection, our modified Tracery ensures that all rules are utilized more effectively, leading to richer and more varied outputs.
+In this modified version of Tracery, we've enhanced the symbol selection mechanism to ensure that symbols are not reused until all options have been exhausted. The original Tracery had a tendency to reuse symbols, resulting in repetitive text expansion. Our improvements address this issue by implementing a rule cycling strategy that marks symbols as used and cycles through all available options before reusing any. This ensures more varied and natural text generation, providing a richer and more dynamic text.
 
 ## Installation
 
