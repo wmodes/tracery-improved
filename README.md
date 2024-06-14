@@ -18,9 +18,9 @@ $ npm install tracery-grammar --save
 ## Example usage
 
 ```javascript
-var tracery = require('tracery-grammar');
+const tracery = require('tracery-grammar');
 
-var grammar = tracery.createGrammar({
+const grammar = tracery.createGrammar({
   'animal': ['panda','fox','capybara','iguana'],
   'emotion': ['sad','happy','angry','jealous'],
   'origin':['I am #emotion.a# #animal#.'],
@@ -36,7 +36,7 @@ console.log(grammar.flatten('#origin#'));
 From the grammar:
 
 ```js
-const rawGrammar = {
+const grammar = {
   origin: ["#sentence#"],
   sentence: ["The #animal# #action#s in the #place#.", "A #animal# loves to #action# in the #place#.", "#animal.capitalize#s often #action# around the #place#."],
   animal: ["cat", "dog", "rabbit", "elephant", "lion"],
