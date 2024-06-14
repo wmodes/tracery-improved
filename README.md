@@ -34,14 +34,14 @@ console.log(grammar.flatten('#origin#'));
 Sample output:
 
 ```plaintext
-1: Cats often run around the zoo.
-2: A dog jumps at the garden.
-3: The rabbit eats in the beach.
-4: The elephant plays in the park.
-5: A lion sleeps at the forest.
-6: Rabbits often play around the forest.
-7: The cat sleeps in the beach.
-8: A elephant jumps at the zoo.
-9: Lions often run around the park.
-10: Dogs often eat around the garden.
+1: A dog loves to play in the garden.
+2: The lion jumps in the forest.
+3: Rabbits often sleep around the park.
+4: Elephants often run around the zoo.
+5: A cat loves to eat in the house.
+6: The elephant jumps in the house.
+7: A cat loves to sleep in the zoo.
+8: Rabbits often run around the forest.
+9: The lion plays in the garden.
+10: The dog eats in the park.
 ```
