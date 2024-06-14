@@ -31,7 +31,21 @@ grammar.addModifiers(tracery.baseEngModifiers);
 console.log(grammar.flatten('#origin#'));
 ```
 
-Sample output:
+## Example Output
+
+From the grammar:
+
+```js
+const rawGrammar = {
+  origin: ["#sentence#"],
+  sentence: ["The #animal# #action#s in the #place#.", "A #animal# loves to #action# in the #place#.", "#animal.capitalize#s often #action# around the #place#."],
+  animal: ["cat", "dog", "rabbit", "elephant", "lion"],
+  action: ["jump", "run", "sleep", "eat", "play"],
+  place: ["park", "forest", "zoo", "garden", "house"]
+};
+```
+
+Repeated expansion produce:
 
 ```plaintext
 1: A dog loves to play in the garden.
