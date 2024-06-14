@@ -5,7 +5,7 @@ const tracery = require(modulePath);
 // Define a multilevel grammar
 const rawGrammar = {
   origin: ["#sentence#"],
-  sentence: ["The #animal# #action#s in the #place#.", "A #animal# loves to #action# in the #place#.", "#animal.capitalize#s often #action# around the #place#."],
+  sentence: ["The #animal# #action#s in the #place#.", "#animal.a.capitalize# loves to #action# in the #place#.", "#animal.capitalize#s often #action# around the #place#."],
   animal: ["cat", "dog", "rabbit", "elephant", "lion"],
   action: ["jump", "run", "sleep", "eat", "play"],
   place: ["park", "forest", "zoo", "garden", "house"]

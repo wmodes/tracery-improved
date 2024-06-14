@@ -36,9 +36,9 @@ console.log(grammar.flatten('#origin#'));
 From the grammar:
 
 ```js
-const grammar = {
+const rawGrammar = {
   origin: ["#sentence#"],
-  sentence: ["The #animal# #action#s in the #place#.", "A #animal# loves to #action# in the #place#.", "#animal.capitalize#s often #action# around the #place#."],
+  sentence: ["The #animal# #action#s in the #place#.", "#animal.a.capitalize# loves to #action# in the #place#.", "#animal.capitalize#s often #action# around the #place#."],
   animal: ["cat", "dog", "rabbit", "elephant", "lion"],
   action: ["jump", "run", "sleep", "eat", "play"],
   place: ["park", "forest", "zoo", "garden", "house"]
@@ -48,14 +48,14 @@ const grammar = {
 Repeated expansion produce:
 
 ```plaintext
-1: A dog loves to play in the garden.
-2: The lion jumps in the forest.
-3: Rabbits often sleep around the park.
-4: Elephants often run around the zoo.
-5: A cat loves to eat in the house.
-6: The elephant jumps in the house.
-7: A cat loves to sleep in the zoo.
-8: Rabbits often run around the forest.
-9: The lion plays in the garden.
-10: The dog eats in the park.
+1: A rabbit loves to jump in the garden.
+2: The elephant plays in the park.
+3: Dogs often eat around the house.
+4: The cat sleeps in the forest.
+5: Lions often run around the zoo.
+6: An elephant loves to jump in the park.
+7: The lion eats in the zoo.
+8: Dogs often play around the house.
+9: A cat loves to run in the forest.
+10: Rabbits often sleep around the garden.
 ```
