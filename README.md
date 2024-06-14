@@ -1,7 +1,7 @@
 # tracery
 Tracery: a story-grammar generation library for javascript
 
-This is an improved version of [v buckenham's](https://github.com/v21/tracery) attempt to package up Kate Compton's [Tracery](https://github.com/galaxykate/tracery/) as a Node library.
+This is an improved version of [v buckenham](https://github.com/v21/tracery)'s attempt to package up Kate Compton's [Tracery](https://github.com/galaxykate/tracery/) as a Node library.
 
 ## Improvement
 
@@ -34,7 +34,14 @@ console.log(grammar.flatten('#origin#'));
 Sample output:
 
 ```plaintext
-I am a happy iguana.
-I am an angry fox.
-I am a sad capybara.
+1: Cats often run around the zoo.
+2: A dog jumps at the garden.
+3: The rabbit eats in the beach.
+4: The elephant plays in the park.
+5: A lion sleeps at the forest.
+6: Rabbits often play around the forest.
+7: The cat sleeps in the beach.
+8: A elephant jumps at the zoo.
+9: Lions often run around the park.
+10: Dogs often eat around the garden.
 ```
