@@ -18,7 +18,7 @@ $ npm install tracery-grammar --save
 ## Example usage
 
 ```javascript
-const tracery = require('tracery-grammar');
+const tracery = require('tracery-improved');
 
 const grammar = tracery.createGrammar({
   'animal': ['panda','fox','capybara','iguana'],
