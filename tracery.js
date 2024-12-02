@@ -1,5 +1,8 @@
 /**
  * @author Kate
+ *
+ * @author Wes Modes
+ *     improvements to make sure there are no repeats unless we've run out of grammar
  */
 
 var tracery = function() {
