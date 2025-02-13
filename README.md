@@ -1,51 +1,60 @@
-# tracery
-Tracery: a story-grammar generation library for javascript
+# tracery-improved  
+An enhanced version of Tracery, a story-grammar generation library for JavaScript.  
 
-This is an improved version of [v buckenham](https://github.com/v21/tracery)'s attempt to package up Kate Compton's [Tracery](https://github.com/galaxykate/tracery/) as a Node library.
+This is an improved version of [v buckenham](https://github.com/v21/tracery)'s Node.js port of Kate Compton's original [Tracery](https://github.com/galaxykate/tracery/). Tracery is a powerful generative text library, often used for procedural storytelling, chatbots, and creative coding.  
 
-## Improvement
+## Improvements  
 
-In this modified version of Tracery, we've enhanced the symbol selection mechanism to ensure that symbols are not reused until all options have been exhausted. The original Tracery had a tendency to reuse symbols, resulting in repetitive text expansion. Our improvements address this issue by implementing a rule cycling strategy that marks symbols as used and cycles through all available options before reusing any. This ensures more varied and natural text generation, providing a richer and more dynamic text.
+This version enhances the symbol selection mechanism to **avoid premature reuse of symbols**, leading to **more varied and natural text generation**.  
 
-## Installation
+### Key Changes:  
+- **Eliminates early symbol reuse** by cycling through all available options before repeating.  
+- **Prevents repetitive patterns** that were common in the original implementation.  
+- **Maintains Tracery’s flexibility and ease of use** while improving output diversity.  
 
-This is hosted at npm, so it can be installed like so:
+## Installation  
+
+This package is available on npm as ```tracery-improved``` and can be installed with:  
 
 ```bash
-$ npm install tracery-grammar --save
-```
+npm install tracery-improved
+```  
 
-## Example usage
+## Example Usage  
 
 ```javascript
 const tracery = require('tracery-improved');
 
 const grammar = tracery.createGrammar({
-  'animal': ['panda','fox','capybara','iguana'],
-  'emotion': ['sad','happy','angry','jealous'],
-  'origin':['I am #emotion.a# #animal#.'],
+  animal: ['panda', 'fox', 'capybara', 'iguana'],
+  emotion: ['sad', 'happy', 'angry', 'jealous'],
+  origin: ['I am #emotion.a# #animal#.']
 });
 
 grammar.addModifiers(tracery.baseEngModifiers); 
 
 console.log(grammar.flatten('#origin#'));
-```
+```  
 
-## Example Output
+## Example Output  
 
-From the grammar:
+Using this grammar:  
 
-```js
+```javascript
 const rawGrammar = {
   origin: ["#sentence#"],
-  sentence: ["The #animal# #action#s in the #place#.", "#animal.a.capitalize# loves to #action# in the #place#.", "#animal.capitalize#s often #action# around the #place#."],
+  sentence: [
+    "The #animal# #action#s in the #place#.", 
+    "#animal.a.capitalize# loves to #action# in the #place#.", 
+    "#animal.capitalize#s often #action# around the #place#."
+  ],
   animal: ["cat", "dog", "rabbit", "elephant", "lion"],
   action: ["jump", "run", "sleep", "eat", "play"],
   place: ["park", "forest", "zoo", "garden", "house"]
 };
-```
+```  
 
-Repeated expansion produce:
+Repeated expansions might produce:  
 
 ```plaintext
 1: A rabbit loves to jump in the garden.
@@ -58,4 +67,9 @@ Repeated expansion produce:
 8: Dogs often play around the house.
 9: A cat loves to run in the forest.
 10: Rabbits often sleep around the garden.
-```
+```  
+
+## Acknowledgments  
+
+- **[Kate Compton](https://github.com/galaxykate)** – Original author of Tracery.  
+- **[v21](https://github.com/v21)** – Packaged Tr
