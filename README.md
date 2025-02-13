@@ -72,4 +72,5 @@ Repeated expansions might produce:
 ## Acknowledgments  
 
 - **[Kate Compton](https://github.com/galaxykate)** – Original author of Tracery.  
-- **[v21](https://github.com/v21)** – Packaged Tr
+- **[v21](https://github.com/v21)** – Packaged Tracery as a Node.js module.  
+- This version builds on their work to further improve output diversity.  
