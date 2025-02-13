@@ -1,15 +1,36 @@
 {
-  "name": "tracery-grammar",
-  "version": "2.7.4",
-  "description": "npm package for Kate Compton's tracery",
-  "main": "tracery.js",
+  "name": "tracery-improved",
+  "version": "1.0.0",
+  "description": "An improved version of Tracery that minimizes symbol reuse",
+  "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/v21/tracery.git"
+    "url": "https://github.com/wmodes/tracery-improved.git"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": "Wes Modes",
+  "license": "MIT",
+  "keywords": ["tracery", "grammar", "procedural", "generation", "writing"],
+  "dependencies": {},
+  "devDependencies": {},
+  "homepage": "https://github.com/wmodes/tracery-improved#readme",
+  "bugs": {
+    "url": "https://github.com/wmodes/tracery-improved/issues"
   },
-  "author": "Kate Compton (packaged by v21)",
-  "license": "ISC"
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/galaxykate"
+  },
+  "contributors": [
+    {
+      "name": "Kate Compton",
+      "email": "galaxykate@gmail.com",
+      "url": "https://github.com/galaxykate"
+    },
+    {
+      "name": "v21",
+      "email": "vtwentyone@gmail.com",
+      "url": "https://github.com/v21"
+    }
+  ]
 }
+
