@@ -2,7 +2,7 @@
   "name": "tracery-improved",
   "version": "1.0.0",
   "description": "An improved version of Tracery that minimizes symbol reuse",
-  "main": "index.js",
+  "main": "tracery.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/wmodes/tracery-improved.git"
