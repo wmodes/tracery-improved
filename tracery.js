@@ -914,4 +914,8 @@ function RuleSet(grammar, raw) {
     return tracery;
 }();
 
-module.exports = tracery; 
+// Guarded: `module` only exists under Node, so a browser <script> tag doesn't throw here
+if (typeof module !== "undefined") {
+    module.exports = tracery;
+}
+
