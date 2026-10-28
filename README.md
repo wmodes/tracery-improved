@@ -74,3 +74,7 @@ Repeated expansions might produce:
 - **[Kate Compton](https://github.com/galaxykate)** – Original author of Tracery.  
 - **[v21](https://github.com/v21)** – Packaged Tracery as a Node.js module.  
 - This version builds on their work to further improve output diversity.  
+
+## Provenance and license  
+
+This code is derived from Tracery, which is licensed under the [Apache License 2.0](LICENSE-tracery.md). That license applies to the Tracery code this project is built on, and its text must travel with any copy of it, so copies of `tracery.js` should include `LICENSE-tracery.md`.  

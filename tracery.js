@@ -1,4 +1,12 @@
 /**
+ * tracery-improved: Tracery that cycles through all of a symbol's rules before repeating one.
+ *
+ * Provenance:
+ * - Tracery, by Kate Compton: https://github.com/galaxykate/tracery
+ *   Licensed under the Apache License 2.0; the license text is in LICENSE-tracery.md.
+ * - Node.js port, by v21: https://github.com/v21/tracery
+ * - This version, by Wes Modes, changes how rules are chosen (see below).
+ *
  * @author Kate
  *
  * @author Wes Modes
