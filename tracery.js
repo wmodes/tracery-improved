@@ -1,4 +1,17 @@
 /**
+ * tracery-improved: Tracery that cycles through all of a symbol's rules before repeating one.
+ *
+ * Provenance:
+ * - Tracery, by Kate Compton: https://github.com/galaxykate/tracery
+ *   Licensed under the Apache License 2.0; the license text is in LICENSE-tracery.md.
+ * - Node.js port, by v21: https://github.com/v21/tracery
+ * - This version, by Wes Modes, changes how rules are chosen (see below).
+ *
+ * AI assistance: the changes made after commit a8c594f (the fix for weighted rules, the
+ * guard on module.exports, and this provenance header and license file) were written with
+ * Claude Code (Claude Sonnet 5.5, a large language model) at Wes Modes's direction. This
+ * note covers only those changes.
+ *
  * @author Kate
  *
  * @author Wes Modes
@@ -343,8 +356,8 @@ function RuleSet(grammar, raw) {
         // TODO: support for conditional and hierarchical rule sets
     }
 
-    // Initialize used rules
-    this.usedRules = new Set();
+    // Initialize used rules (positions in defaultRules; selectRule treats it as an array)
+    this.usedRules = [];
 }
 
     RuleSet.prototype.selectRule = function(errors) {
@@ -369,13 +382,21 @@ function RuleSet(grammar, raw) {
 
         // Handle default rules
         if (this.defaultRules !== undefined) {
-            // If all rules have been used, reset the usedRules array
+            // usedRules holds positions in defaultRules, not rule text. A rule listed more than
+            // once (the usual way to weight it) is then one entry per listing, so each listing is
+            // used once per cycle: a rule listed three times comes up three times per cycle, and
+            // the cycle is over only when every listing has been used.
+            // If all entries have been used, start a new cycle
             if (this.usedRules.length >= this.defaultRules.length) {
                 this.usedRules = [];
             }
 
-            // Select a rule that hasn't been used yet
-            var availableRules = this.defaultRules.filter(rule => !this.usedRules.includes(rule));
+            // Select a rule whose entry hasn't been used yet
+            var availablePositions = [];
+            for (var position = 0; position < this.defaultRules.length; position++) {
+                if (!this.usedRules.includes(position)) availablePositions.push(position);
+            }
+            var availableRules = availablePositions.map(position => this.defaultRules[position]);
             var index = 0;
 
             // Get the distribution from the grammar if there is no other
@@ -404,7 +425,7 @@ function RuleSet(grammar, raw) {
             }
 
             var selectedRule = availableRules[index];
-            this.usedRules.push(selectedRule);
+            this.usedRules.push(availablePositions[index]);
 
             return selectedRule;
         }
@@ -898,4 +919,8 @@ function RuleSet(grammar, raw) {
     return tracery;
 }();
 
-module.exports = tracery; 
+// Guarded: `module` only exists under Node, so a browser <script> tag doesn't throw here
+if (typeof module !== "undefined") {
+    module.exports = tracery;
+}
+

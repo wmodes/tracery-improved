@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An improved version of Tracery that minimizes symbol reuse",
   "main": "tracery.js",
+  "scripts": {
+    "test": "node examples/test-weighted.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/wmodes/tracery-improved.git"
