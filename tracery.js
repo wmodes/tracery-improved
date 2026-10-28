@@ -7,6 +7,11 @@
  * - Node.js port, by v21: https://github.com/v21/tracery
  * - This version, by Wes Modes, changes how rules are chosen (see below).
  *
+ * AI assistance: the changes made after commit a8c594f (the fix for weighted rules, the
+ * guard on module.exports, and this provenance header and license file) were written with
+ * Claude Code (Claude Sonnet 5.5, a large language model) at Wes Modes's direction. This
+ * note covers only those changes.
+ *
  * @author Kate
  *
  * @author Wes Modes

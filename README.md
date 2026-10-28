@@ -78,3 +78,7 @@ Repeated expansions might produce:
 ## Provenance and license  
 
 This code is derived from Tracery, which is licensed under the [Apache License 2.0](LICENSE-tracery.md). That license applies to the Tracery code this project is built on, and its text must travel with any copy of it, so copies of `tracery.js` should include `LICENSE-tracery.md`.  
+
+## AI assistance  
+
+The changes made after commit `a8c594f` (the fix for weighted rules and its test, the `module.exports` guard, and the provenance notes and license file) were written with [Claude Code](https://claude.com/claude-code) (Claude Sonnet 5.5, a large language model) at Wes Modes's direction. Those commits carry a `Co-Authored-By` trailer. This note covers only those changes.  
